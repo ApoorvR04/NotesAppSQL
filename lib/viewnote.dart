@@ -3,6 +3,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'DBHelper.dart';
+
 class Viewnote extends StatefulWidget {
   final Map data;
   final DocumentReference ref;
@@ -16,6 +18,14 @@ class Viewnote extends StatefulWidget {
 class _ViewnoteState extends State<Viewnote> {
   String title = '';
   String body = '';
+
+
+  void _delete() async {
+    final dbHelper = DatabaseHelper.instance;
+
+    final id = await dbHelper.delete(1);
+
+  }
 
   @override
   Widget build(BuildContext context) {

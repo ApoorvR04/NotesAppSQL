@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:notes_app/DBHelper.dart';
 import 'package:notes_app/newnote.dart';
 import 'package:notes_app/viewnote.dart';
 class HomePage extends StatefulWidget {
@@ -10,6 +11,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+
+
   CollectionReference ref = FirebaseFirestore.instance
       .collection('user').doc(FirebaseAuth.instance.currentUser.uid)
       .collection('notes');

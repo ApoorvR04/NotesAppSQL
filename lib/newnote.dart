@@ -3,6 +3,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'DBHelper.dart';
+
 class Addnote extends StatefulWidget {
   @override
   _AddnoteState createState() => _AddnoteState();
@@ -11,6 +13,23 @@ class Addnote extends StatefulWidget {
 class _AddnoteState extends State<Addnote> {
   String title ='';
   String body='';
+
+
+
+  void _insert( title,  body) async {
+    final dbHelper = DatabaseHelper.instance;
+    Map<String, dynamic> row = {
+      DatabaseHelper.title: title,
+      DatabaseHelper.body: body,
+    };
+    final id = await dbHelper.insert(
+      row,
+    );
+
+
+
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -100,6 +119,7 @@ class _AddnoteState extends State<Addnote> {
       'body' : body,
 
     };
+    _insert(this.title, this.body);
     ref.add(data);
 
     Navigator.pop(context);
